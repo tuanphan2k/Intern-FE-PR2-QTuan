@@ -1,0 +1,41 @@
+@import "./src/style/styles.scss";
+
+.footer {
+  font-size: 1.5rem;
+  background-color: $bg-gray;
+  padding: 100px 0;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .content__list {
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      &:not(:last-child) {
+        margin-right: 24px;
+      }
+      text-transform: uppercase;
+    }
+  }
+
+  .social_list {
+    @extend .content__list;
+
+    &--item {
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+  }
+
+  &__contact {
+    @extend .content__list;
+
+    span {
+      font-weight: bold;
+    }
+  }
+}

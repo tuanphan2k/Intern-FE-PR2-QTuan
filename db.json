@@ -1,0 +1,20 @@
+{
+  "categories" : [
+    {
+      "id" : 1,
+      "name": "living room"
+    },
+    {
+      "id" : 2,
+      "name": "Bedroom"
+    },
+    {
+      "id" : 3,
+      "name": "dining room"
+    },
+    {
+      "id" : 4,
+      "name": "Kitchen Cabinets"
+    }
+  ]
+}
