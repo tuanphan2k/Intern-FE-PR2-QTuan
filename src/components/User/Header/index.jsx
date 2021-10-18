@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Row, Input } from "antd";
+import { useHistory } from "react-router";
 import {
   SearchOutlined,
   HeartOutlined,
@@ -14,7 +15,7 @@ import "./styles.scss";
 
 function Header() {
   const [isShowInput, setIsShowInput] = useState(false);
-
+  const history = useHistory();
   const dispatch = useDispatch();
   const categoryList = useSelector(
     (state) => state.categoryReducer.categoryList
@@ -27,7 +28,9 @@ function Header() {
   function renderCategory() {
     if (!categoryList.load) {
       return categoryList.data.map((item) => (
-        <li key={item.id}>{item.name}</li>
+        <li key={item.id} onClick={() => history.push(`/category/${item.id}`)}>
+          {item.name}
+        </li>
       ));
     }
   }
@@ -36,7 +39,7 @@ function Header() {
     <>
       <header className="header container-2">
         <Row className="header__section" justify="space-between" align="middle">
-          <img src={Logo} alt="logo" />
+          <img src={Logo} alt="logo" onClick={() => history.push("/")} />
 
           {isShowInput ? (
             <Input

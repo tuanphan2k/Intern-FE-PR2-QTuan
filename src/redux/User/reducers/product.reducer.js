@@ -5,6 +5,7 @@ const initialState = {
     data: [],
     load: false,
     error: "",
+    total: 0,
   },
 };
 
@@ -20,11 +21,12 @@ export default function productReducer(state = initialState, action) {
       };
     }
     case productCase.sucess: {
-      const { data } = action.payload;
+      const { data,total } = action.payload;
       return {
         ...state,
         productList: {
           data,
+          total,
           load: false,
         },
       };

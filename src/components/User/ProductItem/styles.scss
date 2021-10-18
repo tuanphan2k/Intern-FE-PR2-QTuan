@@ -3,8 +3,9 @@
 .product-item {
   border: 1px solid $bg-gray;
   padding-top: 8px;
-  margin-top: 20px;
+  margin-bottom: 20px;
   cursor: pointer;
+  border-radius: 6px;
 
   &__img {
     position: relative;
