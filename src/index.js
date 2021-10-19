@@ -1,13 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
-import './index.scss';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
+
+import myReducer from './redux/User/reducers';
+import mySaga from './redux/User/sagas';
+import './style/styles.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'antd/dist/antd.css';
+
+const sagaMiddleware = createSagaMiddleware();
+const myStore = createStore(myReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={myStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
