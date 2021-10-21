@@ -1,0 +1,62 @@
+@import "../../../style/styles.scss";
+
+.product-list {
+  margin-bottom: 34px;
+
+  &__top {
+    margin: 10px 0 54px 0;
+    height: 200px;
+    background-image: url("../../../assets/images/breadcrumb-bg-1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h2 {
+      margin: 0;
+      padding: 50px;
+      font-size: 3rem;
+      color: $text-color;
+    }
+  }
+
+  .sidebar {
+    p {
+      margin-bottom: 8px;
+      font-size: 2.2rem;
+      color: $text-color;
+    }
+
+    &-item {
+      font-size: 1.7rem;
+      transition: all ease 0.3s;
+      color: $text-gray;
+      cursor: pointer;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+
+  .main__top {
+    margin-bottom: 14px;
+    font-size: 1.6rem;
+  }
+
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 500px;
+  }
+}
+
+.sidebar-item.active {
+  color: $text-color !important;
+  text-decoration: underline;
+}
+
+.rate-item.active {
+  background-color: rgba($text-gray ,.2) !important;
+}

@@ -10,6 +10,7 @@ function* getProductListSaga(action) {
       type: productCase.sucess,
       payload: {
         data: result.data,
+        total: result.total
       },
     });
   } catch (e) {
