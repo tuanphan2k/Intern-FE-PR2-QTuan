@@ -1,0 +1,142 @@
+@import "../../../style/styles.scss";
+
+.product-detail {
+  margin-bottom: 54px;
+
+  &__slider {
+    &--item {
+      margin-right: 8px;
+      border: 1px solid rgba($text-gray, 0.3);
+      cursor: pointer;
+    }
+
+    &--show {
+      margin: 10px 0;
+      border: 1px solid rgba($text-gray, 0.3);
+    }
+  }
+
+  &__main {
+    .main__content {
+      h1 {
+        margin: 0;
+        font-size: 3.5rem;
+      }
+
+      &--price {
+        font-size: 1.8rem;
+        color: $red-color;
+      }
+
+      &--des {
+        font-size: 1.5rem;
+      }
+    }
+
+    .main__control {
+      &--title {
+        font-size: 1.8rem;
+        color: $text-color;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .size__list {
+    display: flex;
+
+    &--item {
+      margin-right: 16px;
+      font-size: 2rem;
+      cursor: pointer;
+
+      &:hover {
+        font-weight: 600;
+      }
+    }
+  }
+
+  .size__list--item.active {
+    font-weight: 600;
+  }
+
+  .color__list {
+    display: flex;
+
+    &--item {
+      margin-right: 16px;
+      @include size(30px);
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        border: 3px solid $purple-color;
+      }
+    }
+  }
+
+  &__btn {
+    margin-top: 20px;
+
+    button {
+      margin-right: 20px;
+    }
+  }
+
+  .color__list--item.active {
+    border: 3px solid $purple-color;
+  }
+
+  .item-yellow {
+    background-color: $yellow-color;
+  }
+
+  .item-black {
+    background-color: $text-color;
+  }
+
+  .item-red {
+    background-color: $red-color;
+  }
+
+  .item-blue {
+    background-color: $blue-color;
+  }
+
+  &__infor {
+    margin: 34px 0;
+    border-bottom: 1px solid $text-gray;
+
+    .ant-tabs-tab {
+      font-size: 2.6rem;
+      color: $text-gray;
+    }
+
+    .infor__des {
+      font-size: 1.7rem;
+    }
+
+    .infor__option {
+      p {
+        font-size: 1.8rem;
+        font-weight: 600;
+      }
+
+      &--list {
+        display: flex;
+
+        li {
+          margin-right: 20px;
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+
+  &__parity {
+    p {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+  }
+}

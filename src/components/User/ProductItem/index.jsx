@@ -4,6 +4,7 @@ import {
   HeartOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
+import { useHistory } from "react-router";
 import "./styles.scss";
 
 function ProductItem(props) {
@@ -20,6 +21,8 @@ function ProductItem(props) {
     alt,
   } = props.product;
 
+  const history = useHistory();
+
   return (
     <div className="product-item">
       <div className="product-item__img">
@@ -33,7 +36,7 @@ function ProductItem(props) {
           <li>
             <ShoppingCartOutlined />
           </li>
-          <li>
+          <li onClick={() => history.push(`/product-detail/${id}`)}>
             <SearchOutlined />
           </li>
         </ul>

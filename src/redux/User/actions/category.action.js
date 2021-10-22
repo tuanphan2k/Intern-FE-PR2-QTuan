@@ -1,4 +1,4 @@
-import categoryCase from "../constants/category.constant"
+import { categoryCase } from "../constants";
 
 export function getCategoryListAction(params) {
   return {

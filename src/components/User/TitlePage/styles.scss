@@ -1,0 +1,17 @@
+@import "../../../style/styles.scss";
+
+.page__top {
+  margin: 10px 0 54px 0;
+  height: 200px;
+  background-image: url("../../../assets/images/breadcrumb-bg-1.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  h2 {
+    margin: 0;
+    padding: 50px;
+    font-size: 3rem;
+    color: $text-color;
+  }
+}
