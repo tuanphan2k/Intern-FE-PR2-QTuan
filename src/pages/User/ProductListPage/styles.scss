@@ -1,8 +1,10 @@
 @import "../../../style/styles.scss";
 
 .product-list {
-  margin-bottom: 34px;
-
+  &__section {
+    margin-bottom: 34px;
+  }
+  
   &__top {
     margin: 10px 0 54px 0;
     height: 200px;
@@ -58,5 +60,5 @@
 }
 
 .rate-item.active {
-  background-color: rgba($text-gray ,.2) !important;
+  background-color: rgba($text-gray, 0.2) !important;
 }
