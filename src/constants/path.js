@@ -3,6 +3,7 @@ const PATH = {
   CART: '/cart',
   WISHLIST: '/wishlist',
   PRODUCT: '/category/:id',
+  PRODUCTDETAIL: '/product-detail/:id'
 }
 
 export default PATH;

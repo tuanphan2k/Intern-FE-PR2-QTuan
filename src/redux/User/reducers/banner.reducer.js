@@ -1,4 +1,4 @@
-import bannerCase from "../constants/banner.constant";
+import { bannerCase } from "../constants";
 
 const initialState = {
   bannerList: {

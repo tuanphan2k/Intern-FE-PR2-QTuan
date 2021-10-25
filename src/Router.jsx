@@ -6,6 +6,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 //pages
 import UserHomePage from "./pages/User/HomePage";
 import UserProductListPage from "./pages/User/ProductListPage";
+import UserProductDetailPage from "./pages/User/ProductDetailPage";
 
 function BrowserRouter() {
   return (
@@ -16,6 +17,11 @@ function BrowserRouter() {
           exact
           path={PATH.PRODUCT}
           component={UserProductListPage}
+        />
+        <DefaultLayout
+          exact
+          path={PATH.PRODUCTDETAIL}
+          component={UserProductDetailPage}
         />
       </Switch>
     </Router>

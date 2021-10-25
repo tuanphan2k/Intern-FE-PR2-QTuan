@@ -1,5 +1,5 @@
 import { put, takeEvery } from "redux-saga/effects";
-import productCase from "../constants/product.constant";
+import { productCase, productItemCase } from "../constants";
 import productApi from "../../../API/productApi";
 
 function* getProductListSaga(action) {
@@ -10,7 +10,7 @@ function* getProductListSaga(action) {
       type: productCase.sucess,
       payload: {
         data: result.data,
-        total: result.total
+        total: result.total,
       },
     });
   } catch (e) {
@@ -23,6 +23,27 @@ function* getProductListSaga(action) {
   }
 }
 
+function* getProductItemSaga(action) {
+  const params = action.payload;
+  try {
+    const result = yield productApi.getProductItem(params);
+    yield put({
+      type: productItemCase.sucess,
+      payload: {
+        data: result.data,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: productItemCase.fail,
+      payload: {
+        error: e.error,
+      },
+    });
+  }
+}
+
 export default function* productSaga() {
   yield takeEvery(productCase.req, getProductListSaga);
+  yield takeEvery(productItemCase.req, getProductItemSaga);
 }

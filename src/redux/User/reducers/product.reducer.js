@@ -1,4 +1,4 @@
-import productCase from "../constants/product.constant";
+import { productCase, productItemCase } from "../constants";
 
 const initialState = {
   productList: {
@@ -6,6 +6,12 @@ const initialState = {
     load: false,
     error: "",
     total: 0,
+  },
+
+  productDetail: {
+    data: {},
+    load: false,
+    error: "",
   },
 };
 
@@ -21,7 +27,7 @@ export default function productReducer(state = initialState, action) {
       };
     }
     case productCase.sucess: {
-      const { data,total } = action.payload;
+      const { data, total } = action.payload;
       return {
         ...state,
         productList: {
@@ -36,6 +42,35 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productList: {
+          error,
+          load: false,
+        },
+      };
+    }
+    case productItemCase.req: {
+      return {
+        ...state,
+        productDetail: {
+          data: [],
+          load: true,
+        },
+      };
+    }
+    case productItemCase.sucess: {
+      const { data, total } = action.payload;
+      return {
+        ...state,
+        productDetail: {
+          data,
+          load: false,
+        },
+      };
+    }
+    case productItemCase.fail: {
+      const { error } = action.payload;
+      return {
+        ...state,
+        productDetail: {
           error,
           load: false,
         },
