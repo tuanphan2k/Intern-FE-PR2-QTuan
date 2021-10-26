@@ -9,7 +9,7 @@ import mySaga from './redux/User/sagas';
 import './style/styles.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.less';
 
 const sagaMiddleware = createSagaMiddleware();
 const myStore = createStore(myReducer, applyMiddleware(sagaMiddleware));
