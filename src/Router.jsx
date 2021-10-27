@@ -8,6 +8,7 @@ import UserHomePage from "./pages/User/HomePage";
 import UserProductListPage from "./pages/User/ProductListPage";
 import UserProductDetailPage from "./pages/User/ProductDetailPage";
 import RegisterPage from "./pages/User/Register";
+import LoginPage from "./pages/User/Login";
 
 function BrowserRouter() {
   return (
@@ -25,6 +26,7 @@ function BrowserRouter() {
           component={UserProductDetailPage}
         />
         <DefaultLayout exact path={PATH.REGISTER} component={RegisterPage} />
+        <DefaultLayout exact path={PATH.LOGIN} component={LoginPage} />
       </Switch>
     </Router>
   );
