@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Row, Input } from "antd";
+import { Row, Input, Menu, Dropdown } from "antd";
 import { useHistory } from "react-router";
 import {
   SearchOutlined,
@@ -8,18 +8,25 @@ import {
   ShoppingCartOutlined,
   UserOutlined,
   CloseOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
 import Logo from "../../../assets/logo/logo.png";
-import { getCategoryListAction } from "../../../redux/User/actions";
+import {
+  getCategoryListAction,
+  logoutAction,
+} from "../../../redux/User/actions";
 import "./styles.scss";
 
 function Header() {
   const [isShowInput, setIsShowInput] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+  
   const categoryList = useSelector(
     (state) => state.categoryReducer.categoryList
   );
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   useEffect(() => {
     dispatch(getCategoryListAction({}));
@@ -34,6 +41,22 @@ function Header() {
       ));
     }
   }
+
+  function handleLogout() {
+    dispatch(logoutAction({}));
+    history.push("/");
+  }
+
+  const menu = (
+    <Menu>
+      <Menu.Item key="1" onClick={() => history.push("/profile")}>
+        {`My account (${userInfo?.firstName} ${userInfo?.lastName})`}
+      </Menu.Item>
+      <Menu.Item key="2" onClick={() => handleLogout()}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <>
@@ -67,9 +90,17 @@ function Header() {
               <ShoppingCartOutlined />
               <span className="toolbox__item--number">2</span>
             </li>
-            <li className="toolbox__item">
-              <UserOutlined />
-            </li>
+            {userInfo ? (
+              <li className="toolbox__item">
+                <Dropdown overlay={menu} onClick={(e) => e.preventDefault()}>
+                  <UserOutlined />
+                </Dropdown>
+              </li>
+            ) : (
+              <li className="toolbox__item">
+                <LoginOutlined onClick={() => history.push("/login")} />
+              </li>
+            )}
           </ul>
         </Row>
       </header>
