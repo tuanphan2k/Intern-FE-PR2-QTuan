@@ -6,6 +6,7 @@ const PATH = {
   PRODUCTDETAIL: "/product-detail/:id",
   LOGIN: "/login",
   REGISTER: "/register",
+  CART: "/cart",
 };
 
 export default PATH;

@@ -1,10 +1,7 @@
 import { Row, Rate } from "antd";
-import {
-  SearchOutlined,
-  HeartOutlined,
-  ShoppingCartOutlined,
-} from "@ant-design/icons";
+import { SearchOutlined, HeartOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router";
+import BtnAddToCart from "../BtnAddToCart";
 import "./styles.scss";
 
 function ProductItem(props) {
@@ -33,9 +30,7 @@ function ProductItem(props) {
           <li>
             <HeartOutlined />
           </li>
-          <li>
-            <ShoppingCartOutlined />
-          </li>
+          <BtnAddToCart product={{ ...props.product }} />
           <li onClick={() => history.push(`/product-detail/${id}`)}>
             <SearchOutlined />
           </li>

@@ -8,13 +8,23 @@ import {
 } from "../../../redux/User/actions/product.action";
 import TitlePage from "../../../components/User/TitlePage";
 import ProductItem from "../../../components/User/ProductItem";
+import BtnAddToCart from "../../../components/User/BtnAddToCart";
 import "./styles.scss";
 
 function ProductDetailPage({ match }) {
   const { TabPane } = Tabs;
-  const [sizeSelected, setSizeSelected] = useState({ id: null, price: 0 });
-  const [colorSelected, setcolorSelected] = useState({ id: null, price: 0 });
+  const [sizeSelected, setSizeSelected] = useState({
+    id: null,
+    name: null,
+    price: 0,
+  });
+  const [colorSelected, setcolorSelected] = useState({
+    id: null,
+    name: null,
+    price: 0,
+  });
   const productId = parseInt(match.params.id);
+  const [amount, setAmount] = useState();
 
   const dispatch = useDispatch();
 
@@ -27,8 +37,8 @@ function ProductDetailPage({ match }) {
   );
 
   useEffect(() => {
-    setcolorSelected({ id: null, price: 0 });
-    setSizeSelected({ id: null, price: 0 });
+    setcolorSelected({ id: null, name: null, price: 0 });
+    setSizeSelected({ id: null, name: null, price: 0 });
     dispatch(getProductItem(productId));
   }, [productId]);
 
@@ -67,6 +77,7 @@ function ProductDetailPage({ match }) {
     setSizeSelected({
       id,
       price: productDetail.data.sizeOptions[sizeIndex].price,
+      title: productDetail.data.sizeOptions[sizeIndex].title,
     });
   }
 
@@ -78,6 +89,7 @@ function ProductDetailPage({ match }) {
     setcolorSelected({
       id,
       price: productDetail.data.colorOptions[colorIndex].price,
+      title: productDetail.data.colorOptions[colorIndex].title,
     });
   }
 
@@ -167,16 +179,24 @@ function ProductDetailPage({ match }) {
               <Col span={6}>
                 <p className="main__control--title">Quantity</p>
               </Col>
-              <InputNumber defaultValue={1} max={10} min={1} size="large" />
+              <InputNumber
+                defaultValue={1}
+                max={10}
+                min={1}
+                size="large"
+                onChange={(value) => setAmount(value)}
+              />
             </Row>
             <Row className="product-detail__btn">
-              <Button
-                type="primary"
-                size="large"
-                icon={<ShoppingCartOutlined />}
-              >
-                Add to cart
-              </Button>
+              <BtnAddToCart
+                product={{
+                  ...productDetail.data,
+                  amount: amount,
+                  isDetail: true,
+                  size: sizeSelected.id ? sizeSelected : {},
+                  color: colorSelected.id ? colorSelected : {},
+                }}
+              />
               <Button
                 type="primary"
                 icon={<HeartOutlined />}
