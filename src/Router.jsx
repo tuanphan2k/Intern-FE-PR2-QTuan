@@ -7,6 +7,7 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import UserHomePage from "./pages/User/HomePage";
 import UserProductListPage from "./pages/User/ProductListPage";
 import UserProductDetailPage from "./pages/User/ProductDetailPage";
+import UserProductCartPage from "./pages/User/ProductCartPage";
 import RegisterPage from "./pages/User/Register";
 import LoginPage from "./pages/User/Login";
 
@@ -27,6 +28,7 @@ function BrowserRouter() {
         />
         <DefaultLayout exact path={PATH.REGISTER} component={RegisterPage} />
         <DefaultLayout exact path={PATH.LOGIN} component={LoginPage} />
+        <DefaultLayout exact path={PATH.CART} component={UserProductCartPage} />
       </Switch>
     </Router>
   );

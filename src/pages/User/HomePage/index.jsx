@@ -23,16 +23,14 @@ function HomePage() {
     if (!productList.load) {
       return productList.data.map((item) => {
         return (
-          <Col span={8}>
-            <ProductItem product={item} key={item.id} />
+          <Col key={item.id} span={8}>
+            <ProductItem product={item} />
           </Col>
         );
       });
     }
 
-    return (
-      <Spin/>
-    );
+    return <Spin />;
   }
 
   return (
@@ -54,8 +52,8 @@ function HomePage() {
       <section className="home__sale">
         <img src={cabinet} alt="cabinet" />
         <ul className="home__sale--tag">
-          {tagList.map((item) => (
-            <li>{`#${item}`}</li>
+          {tagList.map((item, index) => (
+            <li key={index}>{`#${item}`}</li>
           ))}
         </ul>
         <p className="home__sale--content">

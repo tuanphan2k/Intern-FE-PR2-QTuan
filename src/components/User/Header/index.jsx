@@ -21,9 +21,13 @@ function Header() {
   const [isShowInput, setIsShowInput] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-  
+
   const categoryList = useSelector(
     (state) => state.categoryReducer.categoryList
+  );
+
+  const lengthCart = useSelector(
+    (state) => state.cartReducer.cartList.totalCartList
   );
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
@@ -87,8 +91,8 @@ function Header() {
               <span className="toolbox__item--number">1</span>
             </li>
             <li className="toolbox__item">
-              <ShoppingCartOutlined />
-              <span className="toolbox__item--number">2</span>
+              <ShoppingCartOutlined onClick={() => history.push("/cart")} />
+              <span className="toolbox__item--number">{lengthCart}</span>
             </li>
             {userInfo ? (
               <li className="toolbox__item">
