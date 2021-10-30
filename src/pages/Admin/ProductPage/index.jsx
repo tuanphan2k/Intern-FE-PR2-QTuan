@@ -204,7 +204,7 @@ function ProductPage() {
             name="price"
             rules={[{ required: true, message: "Please input cost!" }]}
           >
-            <InputNumber />
+            <InputNumber min={1} />
           </Form.Item>
           <Form.Item label="Description" name="description">
             <TextArea rows={6} />

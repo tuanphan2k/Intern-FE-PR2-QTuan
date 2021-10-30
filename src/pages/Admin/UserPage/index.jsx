@@ -22,6 +22,8 @@ function UserPage() {
   const [userDetail, setUserDetail] = useState({});
   const [filter, setFilter] = useState({});
 
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   const [userItemForm] = Form.useForm();
 
   useEffect(() => {
@@ -60,26 +62,34 @@ function UserPage() {
       title: "Actions",
       dataIndex: "action",
       key: "action",
-      render: (_, record) => (
-        <Row justify="space-between">
-          <EditOutlined
-            className="table-icon icon-primary"
-            onClick={() => {
-              setIsModalVisible(true);
-              setUserDetail({ ...record });
-            }}
-          />
-          <Popconfirm
-            title={`Are you sure you want to lock this user?`}
-            onConfirm={() => {
-              dispatch(editUserAction({ userId: record.id, role: "disable" }));
-            }}
-          >
-            <UserDeleteOutlined className="table-icon icon-danger" />
-          </Popconfirm>
-          <div></div>
-        </Row>
-      ),
+      render: (_, record) => {
+        if (record.id === userInfo.id) {
+          return <p className="mx-2">My account</p>;
+        } else {
+          return (
+            <Row justify="space-between">
+              <EditOutlined
+                className="table-icon icon-primary"
+                onClick={() => {
+                  setIsModalVisible(true);
+                  setUserDetail({ ...record });
+                }}
+              />
+              <Popconfirm
+                title={`Are you sure you want to lock this user?`}
+                onConfirm={() => {
+                  dispatch(
+                    editUserAction({ userId: record.id, role: "disable" })
+                  );
+                }}
+              >
+                <UserDeleteOutlined className="table-icon icon-danger" />
+              </Popconfirm>
+              <div></div>
+            </Row>
+          );
+        }
+      },
     },
   ];
 

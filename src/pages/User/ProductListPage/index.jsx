@@ -7,7 +7,7 @@ import { filterPrices } from "../../../utils/helper";
 import "./styles.scss";
 
 function ProductListPage({ match }) {
-  const [filter, setFilter] = useState({ _page: 1, _limit: 8 });
+  const [filter, setFilter] = useState({ _page: 1, _limit: 9 });
   const [subCategorySelected, setSubCategorySelected] = useState(null);
 
   const [priceSelected, setPriceSelected] = useState(null);
@@ -27,7 +27,7 @@ function ProductListPage({ match }) {
   const productList = useSelector((state) => state.productReducer.productList);
 
   useEffect(() => {
-    setFilter({ _page: 1, _limit: 8 });
+    setFilter({ _page: 1, _limit: 9 });
     setSubCategorySelected(null);
     setRateSelected(null);
     setPriceSelected(null);
@@ -46,7 +46,11 @@ function ProductListPage({ match }) {
           }`}
           key={item.id}
           onClick={() => {
-            setFilter({ ...filter, subCategoryId: item.id });
+            setFilter({
+              ...filter,
+              subCategoryId: item.id,
+              _page: 1,
+            });
             setSubCategorySelected(item.id);
           }}
         >
@@ -63,7 +67,12 @@ function ProductListPage({ match }) {
         className={`sidebar-item ${index === priceSelected ? "active" : ""}`}
         key={index}
         onClick={() => {
-          setFilter({ ...filter, price_gte: item.start, price_lte: item.end });
+          setFilter({
+            ...filter,
+            price_gte: item.start,
+            price_lte: item.end,
+            _page: 1,
+          });
           setPriceSelected(index);
         }}
       >
@@ -82,7 +91,7 @@ function ProductListPage({ match }) {
         className={rateSelected === item ? "rate-item active" : ""}
         key={item}
         onClick={() => {
-          setFilter({ ...filter, rate: item });
+          setFilter({ ...filter, rate: item, page: 1 });
           setRateSelected(item);
         }}
       >
@@ -133,8 +142,8 @@ function ProductListPage({ match }) {
                 : "active"
             }`}
             onClick={() => {
-              setFilter({ _page: 1, _limit: 8 });
-              setPriceSelected(null);
+              setFilter({ _page: 1, _limit: 9 });
+              setRateSelected(null);
               setPriceSelected(null);
               setSubCategorySelected(null);
             }}
@@ -178,15 +187,19 @@ function ProductListPage({ match }) {
           </Row>
           <Row gutter={16}>{renderProductList()}</Row>
           <Row justify="center">
-            {productList.data.length >= 1 ? (
-              <Pagination
-                defaultCurrent={1}
-                pageSize={filter._limit}
-                total={productList.total}
-                onChange={(page) => setFilter({ ...filter, _page: page })}
-              />
-            ) : (
+            <Pagination
+              defaultCurrent={1}
+              pageSize={filter._limit}
+              total={productList.total}
+              className={`${productList.data.length <= 0 ? "d-none" : ""}`}
+              onChange={(page) => {
+                setFilter({ ...filter, _page: page });
+              }}
+            />
+            {productList.data.length <= 0 ? (
               <h2>Sorry, no products were found to match your selection</h2>
+            ) : (
+              ""
             )}
           </Row>
         </Col>

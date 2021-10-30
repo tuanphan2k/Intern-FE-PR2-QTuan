@@ -4,7 +4,7 @@
 }
 
 .container-2 {
-  max-width:  1400px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -31,4 +31,12 @@
 
 .icon-primary {
   color: $blue-color !important;
+}
+
+.d-none {
+  display: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }

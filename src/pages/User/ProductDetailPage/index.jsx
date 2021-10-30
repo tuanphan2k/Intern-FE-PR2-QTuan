@@ -27,11 +27,14 @@ import {
   addToCommentAction,
   getCommentAction,
 } from "../../../redux/User/actions";
+import history from "../../../utils/history";
 
 function ProductDetailPage({ match }) {
   const { TabPane } = Tabs;
   const { TextArea } = Input;
   const [rate, setRate] = useState(null);
+
+  const [rateForm] = Form.useForm();
 
   const desc = [
     "Dissatisfaction",
@@ -163,10 +166,10 @@ function ProductDetailPage({ match }) {
         })
       );
     } else {
-      notification.warning({
-        message: "Sign in to add to cart!",
-      });
+      history.push("/login");
     }
+    rateForm.resetFields();
+    setRate(null);
   };
 
   return (
@@ -314,7 +317,11 @@ function ProductDetailPage({ match }) {
           <TabPane tab={`Comments (${commentList.data.length})`} key="3">
             <Row>
               <Col span={12}>
-                <Form onFinish={onFinish} className="form__rate">
+                <Form
+                  onFinish={onFinish}
+                  form={rateForm}
+                  className="form__rate"
+                >
                   <p className="form__rate--title">Write a review</p>
                   <Row gutter={16}>
                     <Col span={20}>

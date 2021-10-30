@@ -89,15 +89,6 @@ export default function authReducer(state = initialState, action) {
         },
       };
     }
-    case updateUserCase.req: {
-      return {
-        ...state,
-        userInfo: {
-          ...state.userInfo,
-          load: true,
-        },
-      };
-    }
     case updateUserCase.sucess: {
       const { data } = action.payload.data;
       delete data.password;
