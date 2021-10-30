@@ -1,6 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, notification } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Row, Col, Rate, InputNumber, Button, Tabs, Spin } from "antd";
+import {
+  Row,
+  Col,
+  Rate,
+  InputNumber,
+  Button,
+  Tabs,
+  Spin,
+  Input,
+  Form,
+  Comment,
+  Avatar,
+} from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import {
   getProductItem,
@@ -9,10 +21,26 @@ import {
 import TitlePage from "../../../components/User/TitlePage";
 import ProductItem from "../../../components/User/ProductItem";
 import BtnAddToCart from "../../../components/User/BtnAddToCart";
+import moment from "moment";
 import "./styles.scss";
+import {
+  addToCommentAction,
+  getCommentAction,
+} from "../../../redux/User/actions";
 
 function ProductDetailPage({ match }) {
   const { TabPane } = Tabs;
+  const { TextArea } = Input;
+  const [rate, setRate] = useState(null);
+
+  const desc = [
+    "Dissatisfaction",
+    "Bad",
+    "Normal",
+    "Satisfied",
+    "Extremely satisfied",
+  ];
+
   const [sizeSelected, setSizeSelected] = useState({
     id: null,
     name: null,
@@ -36,10 +64,15 @@ function ProductDetailPage({ match }) {
     (state) => state.productReducer.productList
   );
 
+  const commentList = useSelector((state) => state.commentReducer.commentList);
+
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
   useEffect(() => {
     setcolorSelected({ id: null, name: null, price: 0 });
     setSizeSelected({ id: null, name: null, price: 0 });
     dispatch(getProductItem(productId));
+    dispatch(getCommentAction(productId));
   }, [productId]);
 
   useEffect(() => {
@@ -59,13 +92,36 @@ function ProductDetailPage({ match }) {
     if (!productSimilarList.load) {
       return productSimilarList.data.map((item) => {
         return (
-          <Col span={8}>
-            <ProductItem product={item} key={item.id} />
+          <Col span={8} key={item.id}>
+            <ProductItem product={item} />
           </Col>
         );
       });
     }
 
+    return <Spin />;
+  }
+
+  function renderCommentList() {
+    if (!commentList.load) {
+      return commentList.data.map((item) => {
+        return (
+          <div className="product-detail__comment--item">
+            <Comment
+              author={<a>{item.userName}</a>}
+              avatar={
+                <Avatar
+                  src="https://joeschmoe.io/api/v1/random"
+                  alt="Han Solo"
+                />
+              }
+              content={<p>{item.comment}</p>}
+              datetime={item.date + " " + item.time}
+            />
+          </div>
+        );
+      });
+    }
     return <Spin />;
   }
 
@@ -92,6 +148,26 @@ function ProductDetailPage({ match }) {
       title: productDetail.data.colorOptions[colorIndex].title,
     });
   }
+
+  const onFinish = (values) => {
+    if (userInfo) {
+      moment.locale("vi");
+      dispatch(
+        addToCommentAction({
+          ...values,
+          userId: userInfo.id,
+          productId,
+          userName: userInfo.firstName + " " + userInfo.lastName,
+          date: moment().format("L"),
+          time: moment().format("LT"),
+        })
+      );
+    } else {
+      notification.warning({
+        message: "Sign in to add to cart!",
+      });
+    }
+  };
 
   return (
     <main className="product-detail container-1">
@@ -235,8 +311,59 @@ function ProductDetailPage({ match }) {
               </Col>
             </Row>
           </TabPane>
-          <TabPane tab="Comments" key="3">
-            <Row></Row>
+          <TabPane tab={`Comments (${commentList.data.length})`} key="3">
+            <Row>
+              <Col span={12}>
+                <Form onFinish={onFinish} className="form__rate">
+                  <p className="form__rate--title">Write a review</p>
+                  <Row gutter={16}>
+                    <Col span={20}>
+                      <Form.Item
+                        name="rate"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please choose your rate!",
+                          },
+                        ]}
+                        value={rate}
+                      >
+                        <Rate onChange={(value) => setRate(value)} />
+                      </Form.Item>
+                      <span>{desc[rate - 1]}</span>
+                      <Form.Item
+                        name="comment"
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input your comment!",
+                          },
+                        ]}
+                      >
+                        <TextArea placeholder="Enter your comment" rows={3} />
+                      </Form.Item>
+                    </Col>
+                    <Col span={4}>
+                      <Row className="form__rate--btn">
+                        <Form.Item>
+                          <Button type="primary" htmlType="submit">
+                            Review
+                          </Button>
+                        </Form.Item>
+                      </Row>
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+            </Row>
+            <div className="product-detail__comment">
+              <p className="product-detail__comment--title">
+                Reviews - Reviews From Customers
+              </p>
+              <div className="product-detail__comment--list">
+                {renderCommentList()}
+              </div>
+            </div>
           </TabPane>
         </Tabs>
       </div>
