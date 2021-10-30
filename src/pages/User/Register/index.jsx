@@ -13,7 +13,7 @@ function RegisterPage() {
     const { email, firstName, lastName, password } = values;
     let fullName = firstName + " " + lastName;
 
-    dispatch(registerAction({ email, fullName, password }));
+    dispatch(registerAction({ email, fullName, password, role : "user" }));
   };
 
   return (

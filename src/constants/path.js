@@ -9,6 +9,11 @@ const PATH = {
   CART: "/cart",
   ORDER: "/order",
   PROFILE: "/profile",
+  HOMEADMIN: "/admin/",
+  PRODUCTADMIN: "/admin/product",
+  ORDERADMIN: "/admin/order",
+  USERADMIN: "/admin/user",
+  ADMIN: "/admin",
 };
 
 export default PATH;

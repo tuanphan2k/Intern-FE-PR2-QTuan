@@ -4,7 +4,7 @@ import {
   logoutCase,
   updateUserCase,
 } from "../constants";
-import history from "../../../utils/history";
+import { notification } from "antd";
 
 const initialState = {
   userInfo: {
@@ -78,7 +78,9 @@ export default function authReducer(state = initialState, action) {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("userInfo");
       localStorage.removeItem("cartList");
-      history.push("/");
+      notification.success({
+        message: "Loggout in successfully!",
+      });
       return {
         ...state,
         userInfo: {
