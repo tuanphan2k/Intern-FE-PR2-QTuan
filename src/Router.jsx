@@ -13,6 +13,7 @@ import UserProductOrderPage from "./pages/User/ProductOrderPage";
 import ProfilePage from "./pages/User/ProfilePage";
 import AdminUserPage from "./pages/Admin/UserPage";
 import AdminProductPage from "./pages/Admin/ProductPage";
+import AdminOrderPage from "./pages/Admin/OrderPage";
 //auth-pages
 import RegisterPage from "./pages/User/Register";
 import LoginPage from "./pages/User/Login";
@@ -47,6 +48,11 @@ function BrowserRouter() {
           exact
           path={PATH.PRODUCTADMIN}
           component={AdminProductPage}
+        />
+        <PrivateLayout
+          exact
+          path={PATH.ORDERADMIN}
+          component={AdminOrderPage}
         />
       </Switch>
     </Router>

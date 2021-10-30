@@ -20,3 +20,8 @@ export const filterPrices = [
     end: 99999,
   },
 ];
+
+export const formatAddress = (string) => {
+  const index = string.indexOf("/");
+  return string.slice(index + 1);
+};
