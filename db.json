@@ -222,7 +222,16 @@
         "http://nhaxinh.com/photo/6219/xe_day_do_an_trolly_-_copy.jpg"
       ],
       "rate": 4,
-      "alt": "nha-dep"
+      "alt": "nha-dep",
+      "data": {
+        "name": "Bucket with wheels",
+        "description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "imgs": [
+          "http://nhaxinh.com/photo/6219/xe_day_do_an_trolly_-_copy.jpg"
+        ],
+        "price": 120,
+        "categoryId": 2
+      }
     },
     {
       "id": 4,
@@ -237,7 +246,16 @@
         "http://nhaxinh.com/photo/5180/3_91088_-500x333.jpg"
       ],
       "rate": 4,
-      "alt": "nha-dep"
+      "alt": "nha-dep",
+      "data": {
+        "name": "Maxine wooden bedddd",
+        "description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "imgs": [
+          "http://nhaxinh.com/photo/5180/3_91088_-500x333.jpg"
+        ],
+        "price": 120,
+        "categoryId": 2
+      }
     },
     {
       "id": 5,
@@ -252,7 +270,16 @@
         "http://nhaxinh.com/photo/777/1000-nhaxinh-phong-ngu-giuong-harmony_-_copy.jpg"
       ],
       "rate": 4,
-      "alt": "nha-dep"
+      "alt": "nha-dep",
+      "data": {
+        "name": "Harmony wooden beddd",
+        "description": "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "imgs": [
+          "http://nhaxinh.com/photo/777/1000-nhaxinh-phong-ngu-giuong-harmony_-_copy.jpg"
+        ],
+        "price": 120,
+        "categoryId": 2
+      }
     },
     {
       "id": 6,
@@ -286,7 +313,7 @@
     },
     {
       "id": 8,
-      "name": "Dubai white bed",
+      "name": "Dubai white bedd",
       "subCategoryId": 1,
       "categoryId": 2,
       "discount": 20,

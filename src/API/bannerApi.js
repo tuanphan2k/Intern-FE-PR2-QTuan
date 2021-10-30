@@ -1,10 +1,10 @@
 import axiosClient from "./axiosClients";
 
-const categoryApi = {
+const bannerApi = {
   getBannerList: (params) => {
     const url = `/banners`;
     return axiosClient.get(url, { params });
   },
 };
 
-export default categoryApi;
+export default bannerApi;

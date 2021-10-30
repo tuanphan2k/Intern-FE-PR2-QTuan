@@ -1,6 +1,6 @@
 import { Route, Redirect } from "react-router-dom";
 import PATH from "../../constants/path";
-import SidebarAdmin from "../../components/User/SidebarAdmin";
+import SidebarAdmin from "../../components/Admin/SidebarAdmin";
 import "./styles.scss";
 
 function PrivateLayout(props) {

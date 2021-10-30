@@ -5,18 +5,7 @@ import BtnAddToCart from "../BtnAddToCart";
 import "./styles.scss";
 
 function ProductItem(props) {
-  const {
-    id,
-    name,
-    categoryId,
-    discount,
-    isNew,
-    description,
-    imgs,
-    price,
-    rate,
-    alt,
-  } = props.product;
+  const { id, name, discount, isNew, imgs, price, rate, alt } = props.product;
 
   const history = useHistory();
 
