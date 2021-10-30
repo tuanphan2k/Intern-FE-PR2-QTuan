@@ -1,5 +1,5 @@
 import { put, takeEvery } from "redux-saga/effects";
-import { loginCase, registerCase } from "../constants";
+import { loginCase, registerCase, updateUserCase } from "../constants";
 import authApi from "../../../API/authApi";
 import { notification } from "antd";
 import history from "../../../utils/history";
@@ -49,7 +49,41 @@ function* loginSaga(action) {
   }
 }
 
+function* updateUserSaga(action) {
+  const {
+    id,
+    fullName,
+    gender,
+    accessToken,
+    birthDay,
+    phone,
+    nickName,
+    password,
+  } = action.payload;
+
+  try {
+    const result = yield authApi.updateUser(
+      { id, accessToken },
+      { fullName, gender, birthDay, phone, nickName, password }
+    );
+    yield put({
+      type: updateUserCase.sucess,
+      payload: {
+        data: result,
+      },
+    });
+  } catch (e) {
+    yield put({
+      type: updateUserCase.fail,
+      payload: {
+        error: e.error,
+      },
+    });
+  }
+}
+
 export default function* authSaga() {
   yield takeEvery(registerCase.req, registerSaga);
   yield takeEvery(loginCase.req, loginSaga);
+  yield takeEvery(updateUserCase.req, updateUserSaga);
 }

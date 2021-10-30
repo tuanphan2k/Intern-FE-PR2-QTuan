@@ -1,4 +1,9 @@
-import { loginCase, registerCase, logoutCase } from "../constants";
+import {
+  loginCase,
+  registerCase,
+  logoutCase,
+  updateUserCase,
+} from "../constants";
 import history from "../../../utils/history";
 
 const initialState = {
@@ -79,6 +84,39 @@ export default function authReducer(state = initialState, action) {
         userInfo: {
           data: {},
           load: false,
+        },
+      };
+    }
+    case updateUserCase.req: {
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          load: true,
+        },
+      };
+    }
+    case updateUserCase.sucess: {
+      const { data } = action.payload.data;
+      delete data.password;
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          data,
+          load: false,
+        },
+      };
+    }
+    case updateUserCase.fail: {
+      const { error } = action.payload;
+      return {
+        ...state,
+        userInfo: {
+          ...state.userInfo,
+          load: false,
+          error,
         },
       };
     }

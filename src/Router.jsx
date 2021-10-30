@@ -9,6 +9,7 @@ import UserProductListPage from "./pages/User/ProductListPage";
 import UserProductDetailPage from "./pages/User/ProductDetailPage";
 import UserProductCartPage from "./pages/User/ProductCartPage";
 import UserProductOrderPage from "./pages/User/ProductOrderPage";
+import ProfilePage from "./pages/User/ProfilePage";
 //auth-pages
 import RegisterPage from "./pages/User/Register";
 import LoginPage from "./pages/User/Login";
@@ -36,6 +37,7 @@ function BrowserRouter() {
           path={PATH.ORDER}
           component={UserProductOrderPage}
         />
+        <DefaultLayout exact path={PATH.PROFILE} component={ProfilePage} />
       </Switch>
     </Router>
   );

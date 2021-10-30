@@ -15,3 +15,9 @@ export const logoutCase = {
   fail: "LOGOUT_FAIL",
   sucess: "LOGOUT_SUCCESS",
 };
+
+export const updateUserCase = {
+  req: "UPDATE_USER_REQUEST",
+  fail: "UPDATE_USER_FAIL",
+  sucess: "UPDATE_USER_SUCCESS",
+};
