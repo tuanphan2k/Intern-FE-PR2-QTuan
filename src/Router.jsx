@@ -10,7 +10,9 @@ import UserProductListPage from "./pages/User/ProductListPage";
 import UserProductDetailPage from "./pages/User/ProductDetailPage";
 import UserProductCartPage from "./pages/User/ProductCartPage";
 import UserProductOrderPage from "./pages/User/ProductOrderPage";
+import UserOrderThanksPage from "./pages/User/ThanksPage";
 import ProfilePage from "./pages/User/ProfilePage";
+import NotFoundPage from "./pages/User/NotFoundPage";
 import AdminUserPage from "./pages/Admin/UserPage";
 import AdminProductPage from "./pages/Admin/ProductPage";
 import AdminOrderPage from "./pages/Admin/OrderPage";
@@ -43,6 +45,8 @@ function BrowserRouter() {
           component={UserProductOrderPage}
         />
         <DefaultLayout exact path={PATH.PROFILE} component={ProfilePage} />
+        <DefaultLayout exact path={PATH.THANKS} component={UserOrderThanksPage} />
+        <DefaultLayout exact path={PATH.NOTFOUND} component={NotFoundPage} />
         <PrivateLayout exact path={PATH.USERADMIN} component={AdminUserPage} />
         <PrivateLayout
           exact

@@ -1,0 +1,16 @@
+@import "./src/style/styles";
+
+.thanks-page {
+  background-color: $bg-gray;
+  &__main {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 55vh;
+
+    &--content {
+      font-size: 3rem;
+    }
+  }
+}
