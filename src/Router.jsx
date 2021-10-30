@@ -3,7 +3,7 @@ import history from "./utils/history";
 import PATH from "./constants/path";
 //layouts
 import DefaultLayout from "./layouts/DefaultLayout";
-import PivateLayout from "./layouts/PrivateLayout";
+import PrivateLayout from "./layouts/PrivateLayout";
 //pages
 import UserHomePage from "./pages/User/HomePage";
 import UserProductListPage from "./pages/User/ProductListPage";
@@ -14,10 +14,10 @@ import ProfilePage from "./pages/User/ProfilePage";
 import AdminUserPage from "./pages/Admin/UserPage";
 import AdminProductPage from "./pages/Admin/ProductPage";
 import AdminOrderPage from "./pages/Admin/OrderPage";
+import AdminDashboardPage from "./pages/Admin/DashboardPage";
 //auth-pages
 import RegisterPage from "./pages/User/Register";
 import LoginPage from "./pages/User/Login";
-import PrivateLayout from "./layouts/PrivateLayout";
 
 function BrowserRouter() {
   return (
@@ -54,6 +54,7 @@ function BrowserRouter() {
           path={PATH.ORDERADMIN}
           component={AdminOrderPage}
         />
+        <PrivateLayout exact path={PATH.ADMIN} component={AdminDashboardPage} />
       </Switch>
     </Router>
   );

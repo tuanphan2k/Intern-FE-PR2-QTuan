@@ -16,7 +16,7 @@ function ProductCartPage() {
 
   function totalPrice() {
     let total = 0;
-    cartList.data.forEach((item) => {
+    cartList.data?.forEach((item) => {
       total +=
         (item.price +
           (item.color.price ? item.color.price : 0) +
