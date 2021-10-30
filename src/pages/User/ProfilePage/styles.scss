@@ -11,13 +11,6 @@
 
   .infor__form {
     padding: 20px;
-
-    &--title {
-      margin-bottom: 26px;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
   }
 
   .infor__avatar {
@@ -28,12 +21,10 @@
     }
   }
 
-  .change-pass__form {
-    &--title {
-      margin-bottom: 26px;
-      text-align: center;
-      font-size: 1.8rem;
-      font-weight: 600;
-    }
+  .title {
+    margin-bottom: 26px;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 600;
   }
 }

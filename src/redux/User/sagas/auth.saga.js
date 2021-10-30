@@ -16,8 +16,9 @@ function* registerSaga(action) {
       },
     });
     notification.success({
-      message: "Đăng ký tài khoản thành công!",
+      message: "Successful account registration!",
     });
+    yield history.push(PATH.LOGIN);
   } catch (e) {
     yield put({
       type: registerCase.fail,
@@ -32,16 +33,22 @@ function* loginSaga(action) {
   const params = action.payload;
   try {
     const result = yield authApi.login(params);
-    yield put({
-      type: loginCase.sucess,
-      payload: {
-        data: result,
-      },
-    });
-    if (result.user.role === "admin") {
-      yield history.push(PATH.HOMEADMIN);
+    if (result.user.role === "disable") {
+      notification.warning({
+        message: "This account has been locked!",
+      });
     } else {
-      yield history.push(PATH.HOME);
+      yield put({
+        type: loginCase.sucess,
+        payload: {
+          data: result,
+        },
+      });
+      if (result.user.role === "user") {
+        yield history.push(PATH.HOME);
+      } else {
+        yield history.push(PATH.HOMEADMIN);
+      }
     }
   } catch (e) {
     yield put({

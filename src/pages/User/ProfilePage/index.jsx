@@ -8,6 +8,9 @@ import {
   DatePicker,
   Avatar,
   notification,
+  Table,
+  Col,
+  List,
 } from "antd";
 import {
   UserOutlined,
@@ -18,8 +21,11 @@ import TitlePage from "../../../components/User/TitlePage";
 import { REGEX } from "../../../constants/validate";
 import "moment/locale/vi";
 import moment from "moment";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserAction } from "../../../redux/User/actions/auth.action";
+import { getOrderListAction } from "../../../redux/User/actions/order.action";
+import { useEffect } from "react";
+import { formatAddress, convertStatusNumber } from "../../../utils/helper";
 import "./styles.scss";
 
 function ProfilePage() {
@@ -28,6 +34,12 @@ function ProfilePage() {
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   const accessToken = JSON.parse(localStorage.getItem("accessToken"));
+
+  const orderList = useSelector((state) => state.orderReducer.orderList);
+
+  useEffect(() => {
+    dispatch(getOrderListAction({ userId: userInfo.id }));
+  }, []);
 
   let birthdayString = "";
 
@@ -64,6 +76,55 @@ function ProfilePage() {
     });
   };
 
+  const tableColumns = [
+    {
+      title: "Id",
+      dataIndex: "id",
+      key: "id",
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+    },
+    {
+      title: "Date",
+      dataIndex: "date",
+      key: "date",
+    },
+    {
+      title: "Total Price",
+      dataIndex: "totalPrice",
+      key: "totalPrice",
+      render: (_, record) => {
+        return <p className="mx-2">${record.totalPrice}</p>;
+      },
+    },
+    {
+      title: "Order Status",
+      dataIndex: "status",
+      key: "status",
+      render: (_, record) => {
+        return <p className="mx-2">{convertStatusNumber(record.status)}</p>;
+      },
+    },
+  ];
+
+  const dataSource = orderList.data.map((item) => {
+    const { phone, name, email, country, district, ward, address } =
+      item.userInfo;
+    return {
+      ...item,
+      key: item.id,
+      name,
+      address: `${formatAddress(country)} - ${formatAddress(
+        district
+      )} - ${formatAddress(ward)} (${address})`,
+      phone,
+      email,
+    };
+  });
+
   return (
     <main className="container-1 profile-page">
       <TitlePage title="Profile Page" />
@@ -94,7 +155,7 @@ function ProfilePage() {
               }}
               onFinish={onFinish}
             >
-              <p className="infor__form--title">Personal information</p>
+              <p className="infor__form--title title">Personal information</p>
               <div className="infor__avatar">
                 <div className="infor__avatar--img">
                   <Row justify="center">
@@ -206,7 +267,7 @@ function ProfilePage() {
               wrapperCol={{ span: 20 }}
               onFinish={handleChangePassword}
             >
-              <p className="change-pass__form--title">Change Password</p>
+              <p className="change-pass__form--title title ">Change Password</p>
               <Form.Item
                 name="password"
                 label="Password"
@@ -263,12 +324,63 @@ function ProfilePage() {
             tab={
               <span>
                 <SolutionOutlined />
-                Oder management
+                Order management
               </span>
             }
             key="3"
           >
-            Content of Tab 3
+            <p className="title">My order</p>
+            <Table
+              dataSource={dataSource}
+              loading={orderList.load}
+              columns={tableColumns}
+              size="middle"
+              pagination={{ defaultPageSize: 8 }}
+              expandable={{
+                expandedRowRender: (record) => {
+                  return (
+                    <List
+                      size="small"
+                      dataSource={record.cartList}
+                      renderItem={(item) => (
+                        <List.Item className="order-page__list--item">
+                          <Row className="order-page__list--row" align="middle">
+                            <Col span={3}>
+                              <img src={item.imgs[0]} alt="" />
+                            </Col>
+                            <Col span={8}>
+                              <p>Name : {item.name}</p>
+                            </Col>
+                            <Col span={5}>
+                              <p>
+                                Size:{" "}
+                                {item.size.id ? item.size.title : "Default"}
+                              </p>
+                              <p>
+                                Color:{" "}
+                                {item.color.id ? item.color.title : "Default"}
+                              </p>
+                            </Col>
+                            <Col span={4}>
+                              <p>Amount: {item.amount}</p>
+                            </Col>
+                            <Col span={4}>
+                              <p>
+                                Price: $
+                                {(item.price +
+                                  (item.size.price ? item.size.price : 0) +
+                                  (item.color.price ? item.color.price : 0)) *
+                                  item.amount}
+                              </p>
+                            </Col>
+                          </Row>
+                        </List.Item>
+                      )}
+                    />
+                  );
+                },
+              }}
+            />
           </TabPane>
         </Tabs>
       </div>

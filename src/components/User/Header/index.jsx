@@ -22,6 +22,8 @@ function Header() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const { Search } = Input;
+
   const categoryList = useSelector(
     (state) => state.categoryReducer.categoryList
   );
@@ -62,6 +64,10 @@ function Header() {
     }
   }
 
+  function handleSearchProduct(value) {
+    history.push(`/search?q=${value}`);
+  }
+
   const menu = (
     <Menu>
       <Menu.Item key="1" onClick={() => history.push("/profile")}>
@@ -87,10 +93,12 @@ function Header() {
           <img src={Logo} alt="logo" onClick={() => history.push("/")} />
 
           {isShowInput ? (
-            <Input
+            <Search
               className="header__search"
               size="large"
               placeholder="Search product..."
+              onSearch={(value) => handleSearchProduct(value)}
+              enterButton
             />
           ) : (
             <ul className="header__category">{renderCategory()}</ul>

@@ -95,8 +95,8 @@ function ProductListPage({ match }) {
     if (!productList.load) {
       return productList.data.map((item) => {
         return (
-          <Col span={8}>
-            <ProductItem product={item} key={item.id} />
+          <Col span={8} key={item.id}>
+            <ProductItem product={item} />
           </Col>
         );
       });
@@ -126,6 +126,21 @@ function ProductListPage({ match }) {
       </div>
       <Row className="product-list__section" gutter={16}>
         <Col className="sidebar" span={4}>
+          <p
+            className={`sidebar__all ${
+              subCategorySelected || priceSelected || rateSelected
+                ? ""
+                : "active"
+            }`}
+            onClick={() => {
+              setFilter({ _page: 1, _limit: 8 });
+              setPriceSelected(null);
+              setPriceSelected(null);
+              setSubCategorySelected(null);
+            }}
+          >
+            All
+          </p>
           <div className="sidebar__category">
             <p>Categories</p>
             <ul className="sidebar__category--list">{renderSubCategory()}</ul>

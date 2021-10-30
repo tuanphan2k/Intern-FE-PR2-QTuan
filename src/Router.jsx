@@ -11,6 +11,7 @@ import UserProductDetailPage from "./pages/User/ProductDetailPage";
 import UserProductCartPage from "./pages/User/ProductCartPage";
 import UserProductOrderPage from "./pages/User/ProductOrderPage";
 import UserOrderThanksPage from "./pages/User/ThanksPage";
+import UserSearchPage from "./pages/User/SearchPage";
 import ProfilePage from "./pages/User/ProfilePage";
 import NotFoundPage from "./pages/User/NotFoundPage";
 import AdminUserPage from "./pages/Admin/UserPage";
@@ -45,8 +46,12 @@ function BrowserRouter() {
           component={UserProductOrderPage}
         />
         <DefaultLayout exact path={PATH.PROFILE} component={ProfilePage} />
-        <DefaultLayout exact path={PATH.THANKS} component={UserOrderThanksPage} />
-        <DefaultLayout exact path={PATH.NOTFOUND} component={NotFoundPage} />
+        <DefaultLayout
+          exact
+          path={PATH.THANKS}
+          component={UserOrderThanksPage}
+        />
+        <DefaultLayout exact path={PATH.SEARCH} component={UserSearchPage} />
         <PrivateLayout exact path={PATH.USERADMIN} component={AdminUserPage} />
         <PrivateLayout
           exact
@@ -59,6 +64,7 @@ function BrowserRouter() {
           component={AdminOrderPage}
         />
         <PrivateLayout exact path={PATH.ADMIN} component={AdminDashboardPage} />
+        <DefaultLayout exact path={PATH.NOTFOUND} component={NotFoundPage}/>
       </Switch>
     </Router>
   );

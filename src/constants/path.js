@@ -9,6 +9,7 @@ const PATH = {
   ORDER: "/order",
   PROFILE: "/profile",
   THANKS: "/thanks",
+  SEARCH: "/search",
   HOMEADMIN: "/admin/",
   PRODUCTADMIN: "/admin/product",
   ORDERADMIN: "/admin/order",
