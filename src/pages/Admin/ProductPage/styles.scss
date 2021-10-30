@@ -1,6 +1,6 @@
 @import "./src/style/styles";
 
-.user-page {
+.product-page {
   &__title {
     margin-bottom: 14px;
     font-size: 2rem;
@@ -18,7 +18,11 @@
     }
 
     &--select {
-      width: 120px;
+      width: 200px;
     }
+  }
+
+  &__img {
+    height: 42px;
   }
 }

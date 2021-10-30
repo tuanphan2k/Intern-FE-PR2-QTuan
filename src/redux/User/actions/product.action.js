@@ -1,4 +1,4 @@
-import { productCase, productItemCase } from "../constants";
+import { productCase, productItemCase, deleteItemCase } from "../constants";
 
 export function getProductListAction(params) {
   return {
@@ -10,6 +10,13 @@ export function getProductListAction(params) {
 export function getProductItem(params) {
   return {
     type: productItemCase.req,
+    payload: params,
+  };
+}
+
+export function deleteProuctItemAction(params) {
+  return {
+    type: deleteItemCase.req,
     payload: params,
   };
 }

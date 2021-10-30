@@ -35,7 +35,7 @@ function BannerSilder() {
 
   return (
     <div className="banner-slider">
-      <Carousel autoplaySpeed>{renderBannerList()}</Carousel>
+      <Carousel autoplay>{renderBannerList()}</Carousel>
     </div>
   );
 }

@@ -1,7 +1,33 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "tuan@gmail.com",
+      "password": "$2a$10$1p0tunjFMgUEQSLwR0oSAeKr1IpRGDB/.jyhAVLtlmVoGOTE/urYu",
+      "fullName": "T T",
+      "role": "disable",
+      "id": 2
+    },
+    {
+      "email": "haha@gmail.com",
+      "password": "$2a$10$roXe6oXRlUGK3/hltsYgBuSU5N8Ec9MSPETmE7mCXuK8P50wq7qM2",
+      "fullName": "Tuan Day",
+      "role": "admin",
+      "id": 1
+    }
+  ],
   "orders": [],
-  "comments": [],
+  "comments": [
+    {
+      "rate": 4,
+      "comment": "Tạm được",
+      "userId": 1,
+      "productId": 1,
+      "userName": "undefined undefined",
+      "date": "04/11/2021",
+      "time": "12:51",
+      "id": 1
+    }
+  ],
   "categories": [
     {
       "id": 1,

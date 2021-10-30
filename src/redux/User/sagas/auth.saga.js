@@ -3,6 +3,7 @@ import { loginCase, registerCase, updateUserCase } from "../constants";
 import authApi from "../../../API/authApi";
 import { notification } from "antd";
 import history from "../../../utils/history";
+import PATH from "../../../constants/path";
 
 function* registerSaga(action) {
   const params = action.payload;
@@ -17,7 +18,6 @@ function* registerSaga(action) {
     notification.success({
       message: "Đăng ký tài khoản thành công!",
     });
-    yield history.push("/login");
   } catch (e) {
     yield put({
       type: registerCase.fail,
@@ -38,7 +38,11 @@ function* loginSaga(action) {
         data: result,
       },
     });
-    yield history.push("/");
+    if (result.user.role === "admin") {
+      yield history.push(PATH.HOMEADMIN);
+    } else {
+      yield history.push(PATH.HOME);
+    }
   } catch (e) {
     yield put({
       type: loginCase.fail,

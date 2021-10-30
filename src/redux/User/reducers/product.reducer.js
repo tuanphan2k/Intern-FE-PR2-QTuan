@@ -1,4 +1,4 @@
-import { productCase, productItemCase } from "../constants";
+import { deleteItemCase, productCase, productItemCase } from "../constants";
 
 const initialState = {
   productList: {
@@ -10,7 +10,7 @@ const initialState = {
 
   productDetail: {
     data: {},
-    load: false,
+    load: true,
     error: "",
   },
 };
@@ -21,6 +21,7 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productList: {
+          ...state.productList,
           data: [],
           load: true,
         },
@@ -51,13 +52,13 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productDetail: {
-          data: [],
+          data: {},
           load: true,
         },
       };
     }
     case productItemCase.sucess: {
-      const { data, total } = action.payload;
+      const { data } = action.payload;
       return {
         ...state,
         productDetail: {
@@ -71,6 +72,43 @@ export default function productReducer(state = initialState, action) {
       return {
         ...state,
         productDetail: {
+          error,
+          load: false,
+        },
+      };
+    }
+    case deleteItemCase.req: {
+      return {
+        ...state,
+        productList: {
+          ...state.productList,
+          load: true,
+        },
+      };
+    }
+    case deleteItemCase.sucess: {
+      const { data } = action.payload;
+      console.log("🚀 ~ file: product.reducer.js ~ line 91 ~ productReducer ~ data", data)
+
+      const newProductList = state.productList.data;
+      const productIndex = newProductList.findIndex((item) => item.id === data);
+      newProductList.splice(productIndex, 1);
+
+      return {
+        ...state,
+        productList: {
+          ...state.productList,
+          data: newProductList,
+          load: false,
+        },
+      };
+    }
+    case deleteItemCase.fail: {
+      const { error } = action.payload;
+      return {
+        ...state,
+        productList: {
+          ...state.productList,
           error,
           load: false,
         },

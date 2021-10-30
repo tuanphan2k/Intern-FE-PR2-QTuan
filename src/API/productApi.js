@@ -10,6 +10,10 @@ const productApi = {
     const url = `/products/${id}?_embed=colorOptions&&_embed=sizeOptions&&_expand=category`;
     return axiosClient.get(url, {});
   },
+  deleteProductItem: (id) => {
+    const url = `products/${id}`;
+    return axiosClient.delete(url, {});
+  },
 };
 
 export default productApi;
