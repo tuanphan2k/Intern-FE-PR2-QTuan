@@ -72,6 +72,7 @@ export default function authReducer(state = initialState, action) {
     case logoutCase.req: {
       localStorage.removeItem("accessToken");
       localStorage.removeItem("userInfo");
+      localStorage.removeItem("cartList");
       history.push("/");
       return {
         ...state,

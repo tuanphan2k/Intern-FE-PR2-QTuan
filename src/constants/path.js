@@ -7,6 +7,7 @@ const PATH = {
   LOGIN: "/login",
   REGISTER: "/register",
   CART: "/cart",
+  ORDER: "/order",
 };
 
 export default PATH;

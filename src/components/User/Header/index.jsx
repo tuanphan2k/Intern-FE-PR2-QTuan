@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Row, Input, Menu, Dropdown } from "antd";
+import { Row, Input, Menu, Dropdown, notification } from "antd";
 import { useHistory } from "react-router";
 import {
   SearchOutlined,
@@ -51,6 +51,17 @@ function Header() {
     history.push("/");
   }
 
+  function handleHeaderCart() {
+    if (userInfo) {
+      history.push("/cart");
+    } else {
+      notification.warning({
+        message: "Đăng nhập để xem giỏ hàng!",
+      });
+      history.push("/login");
+    }
+  }
+
   const menu = (
     <Menu>
       <Menu.Item key="1" onClick={() => history.push("/profile")}>
@@ -90,8 +101,8 @@ function Header() {
               <HeartOutlined />
               <span className="toolbox__item--number">1</span>
             </li>
-            <li className="toolbox__item">
-              <ShoppingCartOutlined onClick={() => history.push("/cart")} />
+            <li className="toolbox__item" onClick={() => handleHeaderCart()}>
+              <ShoppingCartOutlined />
               <span className="toolbox__item--number">{lengthCart}</span>
             </li>
             {userInfo ? (
