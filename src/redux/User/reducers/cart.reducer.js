@@ -1,8 +1,8 @@
-import { cartCase } from "../constants";
+import { cartCase, addToOrderCase } from "../constants";
 
 const initialState = {
   cartList: {
-    data: [],
+    data: null,
     totalCartList: 0,
     load: false,
     error: "",
@@ -128,6 +128,18 @@ export default function cartReducer(state = initialState, action) {
           data: cartList,
           totalCartList: cartList.length,
           load: true,
+        },
+      };
+    }
+    case addToOrderCase.sucess: {
+      localStorage.removeItem("cartList");
+      return {
+        ...state,
+        cartList: {
+          ...state.cartList,
+          data: [],
+          load: false,
+          totalCartList: 0,
         },
       };
     }

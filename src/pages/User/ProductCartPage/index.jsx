@@ -3,6 +3,7 @@ import TitlePage from "../../../components/User/TitlePage";
 import CartItem from "../../../components/User/CartItem";
 import { Button, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import history from "../../../utils/history";
 import {
   decreaseCartItemItemAction,
   increaseCartItemAction,
@@ -12,7 +13,6 @@ import {
 function ProductCartPage() {
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cartReducer.cartList);
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
   function totalPrice() {
     let total = 0;
@@ -44,7 +44,7 @@ function ProductCartPage() {
       <TitlePage title="Cart Page" />
       <section className="cart-page__main">
         <div className="main__content">
-          {cartList.data.length < 1 ? (
+          {cartList.totalCartList < 1 ? (
             <p className="main__content--not-item">No items found in cart</p>
           ) : (
             cartList.data.map((item, index) => (
@@ -64,12 +64,18 @@ function ProductCartPage() {
             <p>${totalPrice()}</p>
           </div>
           <Row justify="center">
-            <Button type="primary" size="large">
-              {cartList.data.length < 1
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => {
+                cartList.totalCartList < 1
+                  ? history.push("/")
+                  : history.push("order");
+              }}
+            >
+              {cartList.totalCartList < 1
                 ? "Cart is empty, go to home"
-                : userInfo
-                ? "Make a payment"
-                : "Sign in to pay"}
+                : "Make a payment"}
             </Button>
           </Row>
         </div>

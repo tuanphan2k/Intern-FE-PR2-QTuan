@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Rate, InputNumber, Button, Tabs, Spin } from "antd";
-import { HeartOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { HeartOutlined } from "@ant-design/icons";
 import {
   getProductItem,
   getProductListAction,
