@@ -26,13 +26,13 @@ function BtnAddToCart(props) {
         })
       );
       notification.success({
-        message: "Cập nhật giỏ hàng thành công!",
+        message: "Cart update successful!",
       });
     } else {
       notification.warning({
-        message: "Đăng nhập để thêm vào giỏ hàng!",
+        message: "Sign in to add to cart!",
       });
-      history.push('login')
+      history.push("login");
     }
   }
 

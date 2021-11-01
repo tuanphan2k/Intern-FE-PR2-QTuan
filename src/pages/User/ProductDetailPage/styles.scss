@@ -1,8 +1,6 @@
 @import "../../../style/styles.scss";
 
 .product-detail {
-  margin-bottom: 54px;
-
   &__slider {
     &--item {
       margin-right: 8px;
@@ -105,7 +103,6 @@
 
   &__infor {
     margin: 34px 0;
-    border-bottom: 1px solid $text-gray;
 
     .ant-tabs-tab {
       font-size: 2.6rem;
@@ -134,9 +131,52 @@
   }
 
   &__parity {
+    margin-bottom: 54px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.2);
+
     p {
       font-size: 1.8rem;
       font-weight: 600;
+    }
+  }
+
+  .form__rate {
+    padding: 20px 0;
+
+    &--title {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    &--btn {
+      margin-top: 40px;
+    }
+  }
+
+  .ant-form-item {
+    margin: 0;
+  }
+
+  &__comment {
+    padding: 20px 0;
+
+    &--title {
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 600;
+    }
+
+    &--item {
+      padding: 20px;
+      border-bottom: 1px solid rgba($text-gray, 0.3);
+
+      .ant-comment-content-author-name {
+        font-size: 1.6rem;
+        font-weight: 600;
+      }
     }
   }
 }
