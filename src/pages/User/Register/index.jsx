@@ -10,9 +10,10 @@ function RegisterPage() {
   const dispatch = useDispatch();
 
   const onFinish = (values) => {
-    const userInfo = values;
-    delete userInfo.confirm;
-    dispatch(registerAction(userInfo));
+    const { email, firstName, lastName, password } = values;
+    let fullName = firstName + " " + lastName;
+
+    dispatch(registerAction({ email, fullName, password }));
   };
 
   return (

@@ -158,7 +158,7 @@ function ProductOrderPage() {
             labelCol={{ span: 6 }}
             wrapperCol={{ span: 28 }}
             initialValues={{
-              name: userInfo.firstName + " " + userInfo.lastName,
+              name: userInfo.fullName,
               email: userInfo.email,
               phone: userInfo.phone,
             }}

@@ -8,6 +8,7 @@ const PATH = {
   REGISTER: "/register",
   CART: "/cart",
   ORDER: "/order",
+  PROFILE: "/profile",
 };
 
 export default PATH;

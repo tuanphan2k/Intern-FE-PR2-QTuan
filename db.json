@@ -1,13 +1,5 @@
 {
-  "users": [
-    {
-      "email": "haha@gmail.com",
-      "password": "$2a$10$VWlhL.8tgP.EPTDEIq9hy.Nt38TRnx2l3L9teSNnOwcONJqJS9eqC",
-      "firstName": "tuan",
-      "lastName": "day",
-      "id": 1
-    }
-  ],
+  "users": [],
   "orders": [],
   "comments": [],
   "categories": [

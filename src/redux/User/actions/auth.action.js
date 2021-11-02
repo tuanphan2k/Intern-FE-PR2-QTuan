@@ -1,4 +1,9 @@
-import { registerCase, loginCase, logoutCase } from "../constants";
+import {
+  registerCase,
+  loginCase,
+  logoutCase,
+  updateUserCase,
+} from "../constants";
 
 export function registerAction(params) {
   return {
@@ -17,6 +22,13 @@ export function loginAction(params) {
 export function logoutAction(params) {
   return {
     type: logoutCase.req,
+    payload: params,
+  };
+}
+
+export function updateUserAction(params) {
+  return {
+    type: updateUserCase.req,
     payload: params,
   };
 }
