@@ -19,3 +19,16 @@
 .mx-2 {
   margin: 0 16px;
 }
+
+.table-icon {
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.icon-danger {
+  color: $red-color !important;
+}
+
+.icon-primary {
+  color: $blue-color !important;
+}
