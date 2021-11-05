@@ -67,7 +67,7 @@ function Header() {
       <Menu.Item key="1" onClick={() => history.push("/profile")}>
         {`My account (${userInfo?.fullName})`}
       </Menu.Item>
-      {userInfo.role === "admin" ? (
+      {userInfo?.role === "admin" ? (
         <Menu.Item key="3" onClick={() => history.push("/admin")}>
           Back to Admin page
         </Menu.Item>

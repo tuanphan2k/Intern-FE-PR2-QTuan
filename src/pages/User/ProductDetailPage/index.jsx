@@ -157,7 +157,7 @@ function ProductDetailPage({ match }) {
           ...values,
           userId: userInfo.id,
           productId,
-          userName: userInfo.firstName + " " + userInfo.lastName,
+          userName: userInfo.fullName,
           date: moment().format("L"),
           time: moment().format("LT"),
         })

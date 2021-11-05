@@ -12,6 +12,7 @@ import UserProductCartPage from "./pages/User/ProductCartPage";
 import UserProductOrderPage from "./pages/User/ProductOrderPage";
 import ProfilePage from "./pages/User/ProfilePage";
 import AdminUserPage from "./pages/Admin/UserPage";
+import AdminProductPage from "./pages/Admin/ProductPage";
 //auth-pages
 import RegisterPage from "./pages/User/Register";
 import LoginPage from "./pages/User/Login";
@@ -42,6 +43,11 @@ function BrowserRouter() {
         />
         <DefaultLayout exact path={PATH.PROFILE} component={ProfilePage} />
         <PrivateLayout exact path={PATH.USERADMIN} component={AdminUserPage} />
+        <PrivateLayout
+          exact
+          path={PATH.PRODUCTADMIN}
+          component={AdminProductPage}
+        />
       </Switch>
     </Router>
   );

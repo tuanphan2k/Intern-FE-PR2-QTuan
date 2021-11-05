@@ -6,7 +6,6 @@ const PATH = {
   PRODUCTDETAIL: "/product-detail/:id",
   LOGIN: "/login",
   REGISTER: "/register",
-  CART: "/cart",
   ORDER: "/order",
   PROFILE: "/profile",
   HOMEADMIN: "/admin/",
