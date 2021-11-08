@@ -68,23 +68,13 @@ function SidebarAdmin() {
               User Management
             </Menu.Item>
             <Menu.Item
-              key="6"
-              icon={<UserOutlined />}
+              key="7"
+              icon={<LogoutOutlined />}
               onClick={() => {
                 history.push(PATH.HOME);
               }}
             >
               Back to user page
-            </Menu.Item>
-            <Menu.Item
-              key="7"
-              icon={<LogoutOutlined />}
-              onClick={() => {
-                logoutAction({});
-                history.push(PATH.HOME);
-              }}
-            >
-              Logout
             </Menu.Item>
           </Menu>
         </Sider>

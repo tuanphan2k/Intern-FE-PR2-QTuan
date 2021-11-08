@@ -2,11 +2,11 @@ import TitlePage from "../../../components/User/TitlePage";
 import { Row, Col, Input, Form, Button, Select, notification } from "antd";
 import { useState, useEffect } from "react";
 import { REGEX } from "../../../constants/validate";
-import "./styles.scss";
 import { useDispatch } from "react-redux";
 import { addToOrderAction } from "../../../redux/User/actions/order.action";
 import moment from "moment";
 import history from "../../../utils/history";
+import "./styles.scss";
 
 function ProductOrderPage() {
   const dispatch = useDispatch();
@@ -221,8 +221,8 @@ function ProductOrderPage() {
             </Form.Item>
 
             <Form.Item
-              label="Conuntry"
-              name="conuntry"
+              label="Country"
+              name="country"
               rules={[
                 {
                   required: true,
@@ -231,7 +231,7 @@ function ProductOrderPage() {
               ]}
             >
               <Select
-                placeholder="Choose a Conuntry"
+                placeholder="Choose a country"
                 onChange={(value) => setValues({ ...values, city: value })}
               >
                 {renderCity()}
