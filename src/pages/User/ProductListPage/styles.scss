@@ -38,6 +38,10 @@
         color: $text-color;
       }
     }
+
+    &__all {
+      margin: 0 !important;
+    }
   }
 
   .main__top {
@@ -61,4 +65,8 @@
 
 .rate-item.active {
   background-color: rgba($text-gray, 0.2) !important;
+}
+
+.sidebar__all.active {
+  text-decoration: underline;
 }

@@ -24,6 +24,7 @@ function CartItem(props) {
           <p className="cart-item__content--name">{name}</p>
           <div className="cart-item__toolbox">
             <p>
+              $
               {(price +
                 (size.price ? size.price : 0) +
                 (color.price ? color.price : 0)) *

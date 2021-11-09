@@ -25,3 +25,16 @@ export const formatAddress = (string) => {
   const index = string.indexOf("/");
   return string.slice(index + 1);
 };
+
+export const convertStatusNumber = (number) => {
+  switch (number) {
+    case 1:
+      return "Waiting comfirm";
+    case 2:
+      return "Completed";
+    case 3:
+      return "Canceled";
+    default:
+      return "Error";
+  }
+};
