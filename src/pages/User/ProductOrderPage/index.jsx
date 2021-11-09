@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { REGEX } from "../../../constants/validate";
 import { useDispatch } from "react-redux";
 import { addToOrderAction } from "../../../redux/User/actions/order.action";
+import PATH from "../../../constants/path";
 import moment from "moment";
 import history from "../../../utils/history";
 import "./styles.scss";
@@ -73,7 +74,7 @@ function ProductOrderPage() {
     notification.success({
       message: "Đặt hàng thành công!",
     });
-    history.push("/");
+    history.push(PATH.THANKS);
   };
 
   function renderCity() {

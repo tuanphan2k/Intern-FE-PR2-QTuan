@@ -8,11 +8,13 @@ const PATH = {
   REGISTER: "/register",
   ORDER: "/order",
   PROFILE: "/profile",
+  THANKS: "/thanks",
   HOMEADMIN: "/admin/",
   PRODUCTADMIN: "/admin/product",
   ORDERADMIN: "/admin/order",
   USERADMIN: "/admin/user",
   ADMIN: "/admin",
+  NOTFOUND: "*",
 };
 
 export default PATH;
