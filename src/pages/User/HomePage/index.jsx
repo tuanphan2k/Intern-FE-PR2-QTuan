@@ -1,7 +1,10 @@
 import { Tabs, Row, Col, Spin } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductListAction } from "../../../redux/User/actions";
+import {
+  getCartListAction,
+  getProductListAction,
+} from "../../../redux/User/actions";
 import BannerSilder from "../../../components/User/BannerSlider";
 import ProductItem from "../../../components/User/ProductItem";
 import cabinet from "../../../assets/images/cabinet.jpg";
@@ -17,6 +20,7 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getProductListAction({}));
+    dispatch(getCartListAction({}));
   }, []);
 
   function renderProductList() {

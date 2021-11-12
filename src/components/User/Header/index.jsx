@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { Row, Input, Menu, Dropdown, notification } from "antd";
-import { useHistory } from "react-router";
+import history from "../../../utils/history";
 import {
   SearchOutlined,
   HeartOutlined,
@@ -12,6 +12,7 @@ import {
 } from "@ant-design/icons";
 import Logo from "../../../assets/logo/logo.png";
 import {
+  getCartListAction,
   getCategoryListAction,
   logoutAction,
 } from "../../../redux/User/actions";
@@ -19,7 +20,6 @@ import "./styles.scss";
 
 function Header() {
   const [isShowInput, setIsShowInput] = useState(false);
-  const history = useHistory();
   const dispatch = useDispatch();
 
   const { Search } = Input;
@@ -36,6 +36,7 @@ function Header() {
 
   useEffect(() => {
     dispatch(getCategoryListAction({}));
+    dispatch(getCartListAction({}));
   }, []);
 
   function renderCategory() {

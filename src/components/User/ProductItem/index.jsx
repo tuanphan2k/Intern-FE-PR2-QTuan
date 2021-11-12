@@ -1,19 +1,25 @@
 import { Row, Rate } from "antd";
 import { SearchOutlined, HeartOutlined } from "@ant-design/icons";
-import { useHistory } from "react-router";
+import history from "../../../utils/history";
 import BtnAddToCart from "../BtnAddToCart";
 import "./styles.scss";
 
 function ProductItem(props) {
   const { id, name, discount, isNew, imgs, price, rate, alt } = props.product;
 
-  const history = useHistory();
-
   return (
     <div className="product-item">
       <div className="product-item__img">
-        <img src={imgs[0]} alt={alt} />
-        <div className="product-item__img--discount"> {`${discount}%`}</div>
+        <img
+          src={imgs[0]}
+          alt={alt}
+          onClick={() => history.push(`/product-detail/${id}`)}
+        />
+        {discount > 0 ? (
+          <div className="product-item__img--discount"> {`${discount}%`}</div>
+        ) : (
+          ""
+        )}
         {isNew ? <div className="product-item__img--new"> New </div> : ""}
         <ul className="product-item__toolbox">
           <li>

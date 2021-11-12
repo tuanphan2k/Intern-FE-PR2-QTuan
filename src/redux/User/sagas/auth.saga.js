@@ -20,6 +20,9 @@ function* registerSaga(action) {
     });
     yield history.push(PATH.LOGIN);
   } catch (e) {
+    notification.warning({
+      message: "Already email!",
+    });
     yield put({
       type: registerCase.fail,
       payload: {
@@ -38,6 +41,9 @@ function* loginSaga(action) {
         message: "This account has been locked!",
       });
     } else {
+      notification.success({
+        message: "Login Successful!",
+      });
       yield put({
         type: loginCase.sucess,
         payload: {
@@ -51,6 +57,9 @@ function* loginSaga(action) {
       }
     }
   } catch (e) {
+    notification.warning({
+      message: "Incorrect password or email!",
+    });
     yield put({
       type: loginCase.fail,
       payload: {

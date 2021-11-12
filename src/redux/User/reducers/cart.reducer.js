@@ -1,8 +1,8 @@
-import { cartCase, addToOrderCase } from "../constants";
+import { cartCase, addToOrderCase, logoutCase } from "../constants";
 
 const initialState = {
   cartList: {
-    data: null,
+    data: [],
     totalCartList: 0,
     load: false,
     error: "",
@@ -87,7 +87,7 @@ export default function cartReducer(state = initialState, action) {
     case cartCase.removeFromCart: {
       const indexCart = action.payload;
       let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
-      cartList.splice(indexCart, 1);
+      cartList.splice(indexCart.index, 1);
       localStorage.setItem("cartList", JSON.stringify(cartList));
       return {
         ...state,
@@ -101,38 +101,39 @@ export default function cartReducer(state = initialState, action) {
 
     case cartCase.increaseCartItem: {
       const { index, amount } = action.payload;
-      let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
-      cartList.splice(index, 1, {
-        ...cartList[index],
+      const newCartList = state.cartList.data;
+      newCartList.splice(index, 1, {
+        ...newCartList[index],
         amount: amount,
       });
+      localStorage.setItem("cartList", JSON.stringify(newCartList));
       return {
         ...state,
         cartList: {
-          data: cartList,
-          totalCartList: cartList.length,
+          ...state.cartList,
+          data: newCartList,
           load: true,
         },
       };
     }
     case cartCase.decreaseCartItem: {
       const { index, amount } = action.payload;
-      let cartList = JSON.parse(localStorage.getItem("cartList")) || [];
-      cartList.splice(index, 1, {
-        ...cartList[index],
+      const newCartList = state.cartList.data;
+      newCartList.splice(index, 1, {
+        ...newCartList[index],
         amount: amount,
       });
+      localStorage.setItem("cartList", JSON.stringify(newCartList));
       return {
         ...state,
         cartList: {
-          data: cartList,
-          totalCartList: cartList.length,
+          ...state.cartList,
+          data: newCartList,
           load: true,
         },
       };
     }
     case addToOrderCase.sucess: {
-      localStorage.removeItem("cartList");
       return {
         ...state,
         cartList: {
@@ -140,6 +141,17 @@ export default function cartReducer(state = initialState, action) {
           data: [],
           load: false,
           totalCartList: 0,
+        },
+      };
+    }
+    case cartCase.getCartList: {
+      const cartList = JSON.parse(localStorage.getItem("cartList")) || [];
+      return {
+        ...state,
+        cartList: {
+          data: cartList,
+          totalCartList: cartList.length,
+          load: false,
         },
       };
     }

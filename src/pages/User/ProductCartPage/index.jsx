@@ -6,13 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 import history from "../../../utils/history";
 import {
   decreaseCartItemItemAction,
+  getCartListAction,
   increaseCartItemAction,
   removeFromCartAction,
 } from "../../../redux/User/actions";
+import { useEffect } from "react";
 
 function ProductCartPage() {
   const dispatch = useDispatch();
   const cartList = useSelector((state) => state.cartReducer.cartList);
+
+  useEffect(() => {
+    dispatch(getCartListAction({}));
+  }, []);
 
   function totalPrice() {
     let total = 0;
@@ -27,8 +33,8 @@ function ProductCartPage() {
     return total.toLocaleString();
   }
 
-  function handleDeleteCart(index, amount) {
-    dispatch(removeFromCartAction({ index, amount }));
+  function handleDeleteCart(index) {
+    dispatch(removeFromCartAction({ index }));
   }
 
   function increaseCartItem(index, amount) {

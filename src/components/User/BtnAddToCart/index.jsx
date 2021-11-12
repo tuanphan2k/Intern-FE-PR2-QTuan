@@ -32,7 +32,7 @@ function BtnAddToCart(props) {
       notification.warning({
         message: "Sign in to add to cart!",
       });
-      history.push("login");
+      history.push("/login");
     }
   }
 

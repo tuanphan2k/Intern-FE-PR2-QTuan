@@ -2,8 +2,9 @@ import TitlePage from "../../../components/User/TitlePage";
 import { Row, Col, Input, Form, Button, Select, notification } from "antd";
 import { useState, useEffect } from "react";
 import { REGEX } from "../../../constants/validate";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToOrderAction } from "../../../redux/User/actions/order.action";
+import { getCartListAction } from "../../../redux/User/actions";
 import PATH from "../../../constants/path";
 import moment from "moment";
 import history from "../../../utils/history";
@@ -25,7 +26,11 @@ function ProductOrderPage() {
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-  const cartList = JSON.parse(localStorage.getItem("cartList"));
+  const cartList = useSelector((state) => state.cartReducer.cartList);
+
+  useEffect(() => {
+    dispatch(getCartListAction({}));
+  }, []);
 
   // 48/Thành_phô_Đà_Nẵng
   useEffect(() => {
@@ -64,16 +69,18 @@ function ProductOrderPage() {
       addToOrderAction({
         userInfo: values,
         userId: userInfo.id,
-        cartList,
+        cartList: cartList.data,
         totalPrice: totalPrice(),
         date: moment().format("L"),
         time: moment().format("LT"),
         status: 1,
       })
     );
+    localStorage.removeItem("cartList");
     notification.success({
       message: "Đặt hàng thành công!",
     });
+    dispatch(getCartListAction({}));
     history.push(PATH.THANKS);
   };
 
@@ -108,7 +115,7 @@ function ProductOrderPage() {
   }
 
   function renderProductCart() {
-    return cartList?.map((item, index) => {
+    return cartList.data.map((item, index) => {
       return (
         <Row className="order-page__item" gutter={10} key={index}>
           <Col span={6}>
@@ -121,10 +128,13 @@ function ProductOrderPage() {
               </p>
             </Row>
             <p className="order-page__item--price">
-              {(item.price +
-                (item.size.price ? item.size.price : 0) +
-                (item.color.price ? item.color.price : 0)) *
-                item.amount}
+              $
+              {(
+                (item.price +
+                  (item.size.price ? item.size.price : 0) +
+                  (item.color.price ? item.color.price : 0)) *
+                item.amount
+              ).toLocaleString()}
             </p>
             <p className="order-page__item--option">
               Size : {item.size.title ? item.size.title : "Default"}, Color:{" "}
@@ -138,7 +148,7 @@ function ProductOrderPage() {
 
   function totalPrice() {
     let total = 0;
-    cartList?.forEach((item) => {
+    cartList.data.forEach((item) => {
       total +=
         (item.price +
           (item.color.price ? item.color.price : 0) +

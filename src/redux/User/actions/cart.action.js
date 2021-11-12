@@ -27,3 +27,10 @@ export function decreaseCartItemItemAction(params) {
     payload: params,
   };
 }
+
+export function getCartListAction(params) {
+  return {
+    type: cartCase.getCartList,
+    payload: params,
+  };
+}

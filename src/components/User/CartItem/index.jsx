@@ -25,10 +25,10 @@ function CartItem(props) {
           <div className="cart-item__toolbox">
             <p>
               $
-              {(price +
+              {((price +
                 (size.price ? size.price : 0) +
                 (color.price ? color.price : 0)) *
-                amount}
+                amount).toLocaleString()}
             </p>
             <div className="toolbox__handle">
               <MinusSquareOutlined

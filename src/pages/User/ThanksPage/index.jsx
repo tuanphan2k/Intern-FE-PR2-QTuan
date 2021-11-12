@@ -2,8 +2,17 @@ import TitlePage from "../../../components/User/TitlePage";
 import history from "../../../utils/history";
 import { Row, Button } from "antd";
 import "./styles.scss";
+import { useEffect } from "react";
+import { getCartListAction } from "../../../redux/User/actions";
+import { useDispatch } from "react-redux";
 
 function ThanksPage() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartListAction({}));
+  }, []);
+
   return (
     <main className="thanks-page">
       <TitlePage title="Thank you!" />
